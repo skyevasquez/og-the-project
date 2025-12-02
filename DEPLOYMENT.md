@@ -85,6 +85,8 @@ git push
 ### Step 3: Test the Integration Locally
 
 1. **Start the development server:**
+   
+   This command now starts both the backend API server and the frontend:
 
    ```bash
    npm run dev
@@ -95,6 +97,28 @@ git push
    - Scroll to the newsletter section
    - Enter a test email
    - Check your Beehiiv dashboard to confirm the subscriber was added
+
+### Troubleshooting API Issues
+
+If you encounter issues with the signup form:
+
+1. **"Server configuration error"**:
+   - Check your `.env` file. Ensure `BEEHIIV_API_KEY` and `BEEHIIV_PUBLICATION_ID` are set correctly.
+   - Restart the server (`npm run dev`) after changing `.env` files.
+
+2. **"Valid email is required"**:
+   - The API validates email format. Ensure you are testing with a valid email structure (e.g., `user@example.com`).
+
+3. **"Failed to subscribe"**:
+   - Check the terminal console where you ran `npm run dev`. The server logs detailed error messages from Beehiiv.
+   - Common Beehiiv errors:
+     - Invalid Publication ID (ensure it starts with `pub_` if required, though the code handles this).
+     - API Key permissions (ensure the key has "read" and "write" access).
+     - Rate limiting (too many requests in a short time).
+
+4. **CORS or Network Errors**:
+   - Ensure you are accessing the site via `localhost` as configured.
+   - The `vite.config.ts` is set up to proxy `/api` requests to the backend server.
 
 ---
 
