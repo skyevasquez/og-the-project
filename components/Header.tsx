@@ -22,6 +22,29 @@ const Header: React.FC = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const scrollToNewsletter = () => {
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false);
+    
+    // If not on home page, navigate there first
+    if (window.location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const newsletterSection = document.getElementById('newsletter-signup');
+        if (newsletterSection) {
+          newsletterSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
+    } else {
+      // Already on home page, just scroll
+      const newsletterSection = document.getElementById('newsletter-signup');
+      if (newsletterSection) {
+        newsletterSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  };
+
   return (
     <>
       {/* Top Ticker */}
@@ -93,7 +116,10 @@ const Header: React.FC = () => {
             <button className="hidden md:block p-2 hover:bg-gray-100 rounded-full transition-colors">
               <Search className="w-5 h-5 text-gray-600" />
             </button>
-            <button className="bg-og-orange hover:bg-orange-600 text-white text-xs md:text-sm font-bold px-4 py-2 uppercase tracking-wider transition-transform hover:-translate-y-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <button 
+              onClick={scrollToNewsletter}
+              className="bg-og-orange hover:bg-orange-600 text-white text-xs md:text-sm font-bold px-4 py-2 uppercase tracking-wider transition-transform hover:-translate-y-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+            >
               Subscribe
             </button>
           </div>
@@ -131,7 +157,10 @@ const Header: React.FC = () => {
               <button onClick={() => handleNavClick('/contact')} className="text-xl font-serif text-gray-400 text-left">Contact</button>
             </nav>
             <div className="absolute bottom-0 w-full p-8 bg-gray-900">
-              <button className="w-full bg-og-orange text-white font-display font-bold text-xl py-4 uppercase">
+              <button 
+                onClick={scrollToNewsletter}
+                className="w-full bg-og-orange text-white font-display font-bold text-xl py-4 uppercase"
+              >
                 Subscribe Free
               </button>
             </div>

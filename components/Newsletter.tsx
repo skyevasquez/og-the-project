@@ -35,7 +35,7 @@ const Newsletter: React.FC = () => {
   };
 
   return (
-    <section className="bg-og-blue py-16 border-y-4 border-og-orange">
+    <section id="newsletter-signup" className="bg-og-blue py-16 border-y-4 border-og-orange">
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-white uppercase mb-4">

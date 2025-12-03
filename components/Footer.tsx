@@ -1,9 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NAV_ITEMS } from '../constants';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Youtube } from 'lucide-react';
 
 const Footer: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus('success');
+        setMessage('Thanks for subscribing!');
+        setEmail('');
+      } else {
+        setStatus('error');
+        setMessage(data.message || 'Something went wrong.');
+      }
+    } catch (error) {
+      setStatus('error');
+      setMessage('Network error. Please try again.');
+    }
+  };
+
   return (
     <footer className="bg-og-dark text-white pt-20 pb-10 border-t-8 border-og-orange">
       <div className="container mx-auto px-4">
@@ -77,15 +110,29 @@ const Footer: React.FC = () => {
           <div className="md:col-span-1">
             <h4 className="font-display font-bold text-lg uppercase mb-6 text-og-orange">Stay in the Loop</h4>
             <p className="text-gray-400 text-sm mb-4">Join our mailing list to get the latest news and updates.</p>
-            <form className="flex flex-col gap-2" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
               <input
                 type="email"
                 placeholder="Your email address"
-                className="bg-gray-800 border border-gray-700 text-white px-4 py-3 focus:outline-none focus:border-og-blue text-sm"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={status === 'loading'}
+                className="bg-gray-800 border border-gray-700 text-white px-4 py-3 focus:outline-none focus:border-og-blue text-sm disabled:opacity-50"
               />
-              <button className="bg-white text-og-dark font-display font-bold uppercase py-3 hover:bg-og-orange hover:text-white transition-colors">
-                Subscribe
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="bg-white text-og-dark font-display font-bold uppercase py-3 hover:bg-og-orange hover:text-white transition-colors disabled:opacity-50"
+              >
+                {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
               </button>
+              {status === 'success' && (
+                <p className="text-og-green text-xs mt-1">{message}</p>
+              )}
+              {status === 'error' && (
+                <p className="text-red-400 text-xs mt-1">{message}</p>
+              )}
             </form>
           </div>
         </div>
