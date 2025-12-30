@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"vite --port 3001\"",
+    "dev": "npx @react-grab/claude-code@latest && concurrently \"npm run server\" \"vite --port 3001\"",
     "dev:client": "vite --port 3001",
     "server": "node server.js",
     "build": "vite build",

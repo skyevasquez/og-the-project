@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative w-full h-[60vh] md:h-[70vh] bg-gray-900 overflow-hidden border-b-4 border-og-orange">
+    <section className="relative w-full h-[70vh] md:h-[85vh] lg:h-[90vh] bg-gray-900 overflow-x-hidden border-b-4 border-og-orange">
       <div className="absolute inset-0">
         <img
           src={ASSETS.banner}
@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-og-dark via-transparent to-transparent opacity-90"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-end pb-12 md:pb-20">
+      <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-end pb-12 md:pb-24 lg:pb-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
           <span className="inline-block bg-og-green text-white text-sm font-bold px-3 py-1 mb-4 uppercase tracking-widest">
             Weekly Cheat Sheet
           </span>
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-white font-bold leading-[0.9] uppercase mb-6 drop-shadow-lg">
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-white font-bold leading-[1.1] uppercase mb-6 drop-shadow-lg">
             If it matters <span className="text-transparent bg-clip-text bg-gradient-to-r from-og-orange to-white">this week</span>,<br />
             it's in The OG Project.
           </h1>
