@@ -2,20 +2,6 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "functions": {
-    "api/subscribe.js": {
-      "runtime": "nodejs20.x"
-    },
-    "api/articles.js": {
-      "runtime": "nodejs20.x"
-    },
-    "api/verify-subscriber.js": {
-      "runtime": "nodejs20.x"
-    },
-    "api/check-subscription.js": {
-      "runtime": "nodejs20.x"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
