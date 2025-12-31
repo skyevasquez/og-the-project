@@ -1,0 +1,33 @@
+{
+  "name": "og-the-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npx @react-grab/claude-code@latest && concurrently \"npm run server\" \"vite --port 3001\"",
+    "dev:client": "vite --port 3001",
+    "server": "node server.js",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && echo 'Build complete! Upload the dist/ folder to your hosting provider.'"
+  },
+  "dependencies": {
+    "@google/genai": "^1.34.0",
+    "@vercel/blob": "^2.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "framer-motion": "^12.23.25",
+    "lucide-react": "^0.555.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-router-dom": "^6.30.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^9.2.1",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}
